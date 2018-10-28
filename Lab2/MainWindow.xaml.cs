@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SDLib.ReversePolishNotation;
 
 namespace Lab2
 {
@@ -20,9 +22,14 @@ namespace Lab2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<string> CalculationLog;
+        private SDLib.ReversePolishNotation.ReversePolishNotation rpn;
         public MainWindow()
         {
             InitializeComponent();
+            rpn = new ReversePolishNotation();
+            CalculationLog = new ObservableCollection<string>();
+            LogPanel.ItemsSource = CalculationLog;
         }
 
         private void ButtonContentToWindow(object sender, RoutedEventArgs e)
@@ -39,6 +46,20 @@ namespace Lab2
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
             CalculationWindow.Text = "";
+        }
+
+        private void ButtonResult_Click(object sender, RoutedEventArgs e)
+        {
+            double result;
+            if (rpn.Calculate(CalculationWindow.Text, out result))
+            {
+                CalculationLog.Add(CalculationWindow.Text + " = " + ((decimal)result).ToString());
+                CalculationWindow.Text = ((decimal)result).ToString();
+            }
+            else
+            {
+                CalculationLog.Add("Ошибка. Проверьте правильность ввода выражения.");
+            }
         }
     }
 }

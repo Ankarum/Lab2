@@ -8,7 +8,8 @@
         Title="MyCalculator" Height="463.419" Width="388.469">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
@@ -21,28 +22,39 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border BorderThickness="2" BorderBrush="LightGray" Grid.Column="0" Grid.Row="0" Margin="5" Grid.ColumnSpan="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <TextBlock x:Name="CalculationWindow"  TextWrapping="Wrap"></TextBlock>
+        <ListBox x:Name="LogPanel" Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Border BorderThickness="2" BorderBrush="LightGray" Grid.Column="0" Grid.Row="1" Margin="5" Grid.ColumnSpan="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <TextBlock x:Name="CalculationWindow" FontSize="16" TextWrapping="Wrap"></TextBlock>
         </Border>
-        
-        <Button x:Name="Button1" Margin="5" Content="1" Grid.Column="0" Grid.Row="1" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button2" Margin="5" Content="2" Grid.Column="1" Grid.Row="1" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button3" Margin="5" Content="3" Grid.Column="2" Grid.Row="1" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button4" Margin="5" Content="4" Grid.Column="0" Grid.Row="2" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button5" Margin="5" Content="5" Grid.Column="1" Grid.Row="2" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button6" Margin="5" Content="6" Grid.Column="2" Grid.Row="2" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button7" Margin="5" Content="7" Grid.Column="0" Grid.Row="3" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button8" Margin="5" Content="8" Grid.Column="1" Grid.Row="3" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button9" Margin="5" Content="9" Grid.Column="2" Grid.Row="3" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonLB" Margin="5" Content="(" Grid.Column="0" Grid.Row="4" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonRB" Margin="5" Content=")" Grid.Column="1" Grid.Row="4" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="Button0" Margin="5" Content="0" Grid.Column="2" Grid.Row="4" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonPlus" Margin="5" Content="+" Grid.Column="3" Grid.Row="1" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonMinus" Margin="5" Content="-" Grid.Column="3" Grid.Row="2" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonMultiply" Margin="5" Content="*" Grid.Column="3" Grid.Row="3" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonDivide" Margin="5" Content="/" Grid.Column="3" Grid.Row="4" Click="ButtonContentToWindow"></Button>
-        <Button x:Name="ButtonBackspace" FontFamily="Marlett" Margin="5" Content="3" Grid.Column="0" Grid.Row="5" Click="ButtonBackspace_Click"></Button>
-        <Button x:Name="ButtonClear" Margin="5" Content="Clear" Grid.Column="1" Grid.Row="5" Click="ButtonClear_Click"></Button>
-        <Button x:Name="ButtonResult" Margin="5" Content="=" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"></Button>
+        <Button x:Name="Button1" Margin="5" Content="1" Grid.Column="0" Grid.Row="2" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button2" Margin="5" Content="2" Grid.Column="1" Grid.Row="2" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button3" Margin="5" Content="3" Grid.Column="2" Grid.Row="2" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button4" Margin="5" Content="4" Grid.Column="0" Grid.Row="3" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button5" Margin="5" Content="5" Grid.Column="1" Grid.Row="3" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button6" Margin="5" Content="6" Grid.Column="2" Grid.Row="3" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button7" Margin="5" Content="7" Grid.Column="0" Grid.Row="4" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button8" Margin="5" Content="8" Grid.Column="1" Grid.Row="4" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button9" Margin="5" Content="9" Grid.Column="2" Grid.Row="4" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonLB" Margin="5" Content="(" Grid.Column="0" Grid.Row="5" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonRB" Margin="5" Content=")" Grid.Column="1" Grid.Row="5" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="Button0" Margin="5" Content="0" Grid.Column="2" Grid.Row="5" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonPlus" Margin="5" Content="+" Grid.Column="3" Grid.Row="2" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonMinus" Margin="5" Content="-" Grid.Column="3" Grid.Row="3" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonMultiply" Margin="5" Content="*" Grid.Column="3" Grid.Row="4" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonDivide" Margin="5" Content="/" Grid.Column="3" Grid.Row="5" Click="ButtonContentToWindow"></Button>
+        <Button x:Name="ButtonBackspace" FontFamily="Marlett" Margin="5" Content="3" Grid.Column="0" Grid.Row="6" Click="ButtonBackspace_Click"></Button>
+        <Button x:Name="ButtonClear" Margin="5" Content="Clear" Grid.Column="1" Grid.Row="6" Click="ButtonClear_Click"></Button>
+        <Button x:Name="ButtonResult" Margin="5" Content="=" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" Click="ButtonResult_Click"></Button>
     </Grid>
 </Window>
